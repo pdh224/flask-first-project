@@ -10,7 +10,4 @@ class User(db.Model):
     pmWeather= db.Column(db.String, index=True)
     temmin= db.Column(db.Integer, index=True)
     temmax= db.Column(db.Integer, index=True)
-    created_at=db.Column(db.DateTime, default=datetime.now)
-    updated_at= db.Column(
-        db.DateTime, default=datetime.now, onupdate=datetime.now
-    )
+    

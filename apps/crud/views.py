@@ -1,4 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,redirect, url_for
+from apps.crud.forms import UserForm
+from apps.app import db
+from apps.crud.models import User
+
 
 crud= Blueprint(
     "crud",
@@ -10,3 +14,31 @@ crud= Blueprint(
 @crud.route("/")
 def index():
     return render_template("crud/index.html")
+
+@crud.route("/new", methods=["GET","POST"])
+def create_user():
+    form=UserForm()
+    if form.validate_on_submit():
+        user=User(
+            days=form.days.data,
+            amWeather=form.amWeather.data,
+            pmWeather=form.pmWeather.data,
+            temmin=form.temmin.data,
+            temmax=form.temmax.data,
+        )
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for("crud.users"))
+    return render_template("crud/create.html", form=form)
+
+@crud.route("/inf")
+def users():
+    users=User.query.all()
+    return render_template("crud/inf.html",users=users)
+
+@crud.route("/inf/<user_id>/delete", methods=["POST"])
+def delete_user(user_id):
+    user=User.query.filter_by(id=user_id).first()
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for("crud.users"))
