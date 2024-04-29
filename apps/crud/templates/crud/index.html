@@ -1,3 +1,50 @@
 {% extends "crud/base.html" %}
 {% block title %}CRUD{% endblock %}
-{% block content %} <h2>사용자의 일람</h2>{% endblock %}
+{% block content %} 
+<div class="bg-video">
+    <video class="bg-video__content" autoplay muted loop>
+        <source src="{{url_for('crud.static',filename='날씨.mp4')}}" type="video/mp4" />
+    </video>
+  </div>
+<h1>주간 날씨예보</h1>
+<div class="week">
+    
+    <div class="container">
+    <img src="{{url_for('crud.static',filename='월요일.png')}}" type="png">
+    <a href="{{url_for('crud.users_result', user_id=1)}}" >Mon</a>
+    </div>
+    
+    <div class="container">
+    <img src="{{url_for('crud.static',filename='화요일.png')}}" type="png">
+    <a href="{{url_for('crud.users_result', user_id=2)}}" >Tue</a>
+    </div>
+    
+    <div class="container">
+    <img src="{{url_for('crud.static',filename='수요일.png')}}" type="png">
+    <a href="{{url_for('crud.users_result', user_id=3)}}" >Wed</a>
+    </div>
+   
+    <div class="container">
+    <img src="{{url_for('crud.static',filename='목요일.png')}}" type="png">
+    <a href="{{url_for('crud.users_result', user_id=4)}}" >Thu</a>
+    </div>
+    
+
+    <div class="container">
+    <img src="{{url_for('crud.static',filename='금요일.png')}}" type="png">
+    <a href="{{url_for('crud.users_result', user_id=5)}}" >Fri</a>
+    </div>
+    
+
+    <div class="container">
+    <img src="{{url_for('crud.static',filename='토요일.png')}}" type="png">
+    <a href="{{url_for('crud.users_result', user_id=6)}}" >Sat</a>
+    </div>
+    
+    <div class="container">
+    <img src="{{url_for('crud.static',filename='일요일.png')}}" type="png">      
+    <a href="{{url_for('crud.users_result', user_id=7)}}" >Sun</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -2,6 +2,11 @@
 {% block title %}CRUD{% endblock %}
 {% block content %}<h2>사용자 신규 작성</h2>
 <form action="{{url_for('crud.create_user')}}" method="POST" novalidate="novalidate">
+    <div class="bg-video">
+        <video class="bg-video__content" autoplay muted loop>
+            <source src="{{url_for('crud.static',filename='날씨.mp4')}}" type="video/mp4" />
+        </video>
+    </div>
     {{form.csrf_token}}
     <p>
         {{form.days.label}}{{form.days(placeholer="날짜")}}

@@ -1,0 +1,57 @@
+{% extends "crud/base.html" %}
+{% block title %}CRUD{% endblock %}
+{% block content %} 
+<div class="bg-video">
+    <video class="bg-video__content" autoplay muted loop>
+      <source src="{{url_for('crud.static',filename='날씨.mp4')}}" type="video/mp4" />
+    </video>
+</div>
+<h1>상세 날씨</h1>
+<!-- <table>
+    <tr>
+        <th>day</th>
+        <th>오전 날씨</th>
+        <th>오후 날씨</th>
+        <th>최저 기온</th>
+        <th>최고 기온</th>
+
+    </tr>
+    <tr>
+        <td>{{user.days}}</td>
+        <td>{{user.amWeather}}</td>
+        <td>{{user.pmWeather}}</td>
+        <td>{{user.temmin}}</td>
+        <td>{{user.temmax}}</td>
+    </tr>
+</table> -->
+
+<div class="result">
+<div class="icons">
+
+<img src="{{ url_for('crud.static', filename=user_src1) }}"  type="png" class="icon">
+
+<img src="{{ url_for('crud.static', filename=user_src2) }}"  type="png" class="icon">
+
+
+
+</div>
+
+
+<ul>
+    <li>{{user.days}}</li>
+    <li>오전 날씨 {{user.amWeather}}</li>
+    <li>오후 날씨 {{user.pmWeather}}</li>
+    <li>최저 기온 {{user.temmin}}</li>
+    <li>최고 기온 {{user.temmax}}</li>
+</ul>
+
+<div class="buttonContainer">
+<button><a href="{{url_for('crud.index')}}" class="뒤로">뒤로</a></button>
+</div>
+</div>
+<!-- <script>
+    if (user.amWeather=="맑음"){
+        return user_src="{{url_for('crud.static',filename='맑음.png')}}" 
+    }
+</script> -->
+{% endblock %}

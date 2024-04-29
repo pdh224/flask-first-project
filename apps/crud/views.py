@@ -42,3 +42,27 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for("crud.users"))
+
+@crud.route("/inf/<user_id>", methods=["GET"]) 
+def users_result(user_id):
+    print(user_id)
+    user_src = None
+    users=User.query.filter_by(id=user_id).first()
+    if not users :
+        return "데이터가 없어요"
+    if users.amWeather=="맑음":
+        user_src1="맑음.png"
+    if users.amWeather=="구름":
+        user_src1="구름.png"
+    if users.amWeather=="흐림":
+        user_src1="구름.png"
+    if users.amWeather=="비":
+        user_src1="비.png"
+    if users.pmWeather=="맑음":
+        user_src2="맑음.png"
+    if users.pmWeather=="비":
+        user_src2="비.png"
+    if users.pmWeather=="구름":
+        user_src2="구름.png"       
+  
+    return render_template("crud/result.html",user=users, user_src1=user_src1, user_src2=user_src2)
