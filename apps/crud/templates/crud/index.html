@@ -46,5 +46,7 @@
     <a href="{{url_for('crud.users_result', user_id=7)}}" >Sun</a>
     </div>
 </div>
-
+{% if not current_user.is_authenticated %}
+<button class="로그인"><a href="{{url_for('auth.login')}}" class="뒤로">로그인</a></button>
+{% endif %}
 {% endblock %}

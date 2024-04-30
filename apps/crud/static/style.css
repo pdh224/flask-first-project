@@ -26,6 +26,7 @@ h1{
 }
 .week{
     display: flex;
+    height: 500px;
     font-size: 30px;
     flex-direction: row;
 }
@@ -39,8 +40,7 @@ a{
 }
 .container{
     margin: auto;
-    position: relative;
-    top: 200px;
+    
 }
 img{
     width: 150px;
@@ -68,10 +68,13 @@ li{
     border-style: solid;
     border-width:  2px;
     border-color: white;
+    position: relative;
+    top: 100px
 }
 body{
     margin: auto;
     text-align: center;
+
 }
 .buttonContainer{
     display: flex;

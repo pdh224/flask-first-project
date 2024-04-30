@@ -2,7 +2,7 @@ from flask import Blueprint, render_template,redirect, url_for
 from apps.crud.forms import UserForm
 from apps.app import db
 from apps.crud.models import User
-
+from flask_login import login_required
 
 crud= Blueprint(
     "crud",
@@ -16,6 +16,7 @@ def index():
     return render_template("crud/index.html")
 
 @crud.route("/new", methods=["GET","POST"])
+@login_required
 def create_user():
     form=UserForm()
     if form.validate_on_submit():
@@ -32,11 +33,13 @@ def create_user():
     return render_template("crud/create.html", form=form)
 
 @crud.route("/inf")
+@login_required
 def users():
     users=User.query.all()
     return render_template("crud/inf.html",users=users)
 
 @crud.route("/inf/<user_id>/delete", methods=["POST"])
+@login_required
 def delete_user(user_id):
     user=User.query.filter_by(id=user_id).first()
     db.session.delete(user)
@@ -54,8 +57,6 @@ def users_result(user_id):
         user_src1="맑음.png"
     if users.amWeather=="구름":
         user_src1="구름.png"
-    if users.amWeather=="흐림":
-        user_src1="구름.png"
     if users.amWeather=="비":
         user_src1="비.png"
     if users.pmWeather=="맑음":
@@ -64,5 +65,6 @@ def users_result(user_id):
         user_src2="비.png"
     if users.pmWeather=="구름":
         user_src2="구름.png"       
-  
     return render_template("crud/result.html",user=users, user_src1=user_src1, user_src2=user_src2)
+
+

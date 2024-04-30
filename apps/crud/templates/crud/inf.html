@@ -1,12 +1,12 @@
 {% extends "crud/base.html" %}
 {% block title %}CRUD{% endblock %}
-{% block content %} <h2>사용자의 일람</h2>
+{% block content %} <h2>날씨 데이터 작성</h2>
 <div class="bg-video">
     <video class="bg-video__content" autoplay muted loop>
         <source src="{{url_for('crud.static',filename='날씨.mp4')}}" type="video/mp4" />
     </video>
 </div>
-<a href="{{url_for('crud.create_user')}}">사용자 신규 작성</a>
+<a href="{{url_for('crud.create_user')}}">날씨 신규 작성</a>
 
 <table>
     <tr>
@@ -36,4 +36,6 @@
         </td>
     </tr>
     {% endfor %}
-</table>{% endblock %}
+</table>
+<button ><a href="{{url_for('crud.index')}}" class="뒤로">뒤로</a></button>
+{% endblock %}
