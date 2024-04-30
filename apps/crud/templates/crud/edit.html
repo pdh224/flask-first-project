@@ -1,0 +1,47 @@
+{% extends "crud/base.html" %}
+{% block title %}사용자 편집{% endblock %}
+{% block content %}
+    <h2>사용자 편집</h2>
+    <form
+    action="{{url_for('crud.edit_user',user_id=user.id)}}"
+    method="POST"
+    novalidate="novalidate"
+    >
+ 
+    <p>
+        {{form.days.label}}{{form.days(placeholer="날짜")}}
+    </p>
+    
+    {% for error in form.days.errors %}
+    <span style="color: red;">{{ error }}</span>
+    {% endfor%}
+    
+    <p>
+        {{form.amWeather.label}}{{form.amWeather(placeholer="오전 날씨")}}
+    </p>
+    {% for error in form.amWeather.errors %}
+    <span style="color: red;">{{error}}</span>
+    {% endfor %}
+    <p>
+        {{form.pmWeather.label}}{{form.pmWeather(placeholer="오후 날씨")}}
+    </p>
+    {% for error in form.pmWeather.errors %}
+    <span style="color: red;">{{error}}</span>
+    {% endfor %}
+    <p>
+        {{form.temmin.label}}{{form.temmin(placeholer="최저 기온")}}
+    </p>
+    {% for error in form.temmin.errors %}
+    <span style="color: red;">{{error}}</span>
+    {% endfor %}
+    <p>
+        {{form.temmax.label}}{{form.temmax(placeholer="최고 기온")}}
+    </p>
+    {% for error in form.temmax.errors %}
+    <span style="color: red;">{{error}}</span>
+    {% endfor %}
+    
+    <p><input type="submit" value="갱신"/></p>
+    </form>
+    
+{% endblock %}

@@ -45,7 +45,7 @@ def login():
         user=Acount.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
-            return redirect(url_for("crud.users"))
+            return redirect(url_for("crud.index"))
         flash("메일 주소 또는 비밀번호가 일치하지 않습니다")
 
     return render_template("auth/login.html",form=form)
@@ -79,5 +79,6 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for("auth.index"))
+
 
 

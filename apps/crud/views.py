@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template,redirect, url_for
+from flask import Blueprint, render_template,redirect, url_for, request
 from apps.crud.forms import UserForm
 from apps.app import db
 from apps.crud.models import User
@@ -66,5 +66,25 @@ def users_result(user_id):
     if users.pmWeather=="구름":
         user_src2="구름.png"       
     return render_template("crud/result.html",user=users, user_src1=user_src1, user_src2=user_src2)
+
+
+@crud.route("/inf/<user_id>/edit", methods=["POST","GET"])
+@login_required
+def edit_user(user_id):
+    form=UserForm()
+    user=User.query.filter_by(id=user_id).first()
+    if request.method == "POST" :
+        user.days = form.days.data
+        user.amWeather = form.amWeather.data
+        user.pmWeather = form.pmWeather.data
+        user.temmin = form.temmin.data
+        user.temmax = form.temmax.data
+        
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for("crud.users"))
+    
+    return render_template("crud/edit.html", user=user, form=form)
+
 
 

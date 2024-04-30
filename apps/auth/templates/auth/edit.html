@@ -3,7 +3,7 @@
 {% block content %}
     <h2>사용자 편집</h2>
     <form
-    action="{{url_for('auth.edit_user',user_id=user.id)}}"
+    action="{{ url_for('auth.edit_user',user_id=user.id) }}"
     method="POST"
     novalidate="novalidate"
     >
@@ -30,8 +30,11 @@
     {% endfor %}
     <p><input type="submit" value="갱신"/></p>
     </form>
-    
     <form action="{{url_for('auth.delete_user',user_id=user.id)}}" method="POST">
         <input type="submit" value="삭제">
     </form>
+    <button><a href="{{url_for('auth.index')}}" class="뒤로">뒤로</a></button>
+
+
+
 {% endblock %}

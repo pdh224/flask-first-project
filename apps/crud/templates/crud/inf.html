@@ -21,7 +21,7 @@
     {% for user in users %}
     <tr>
         <td>
-        {{user.id}}
+            <a href="{{url_for('crud.edit_user',user_id=user.id)}}">{{user.id}}</a>
         </td>
         <td>{{user.days}}</td>
         <td>{{user.amWeather}}</td>
